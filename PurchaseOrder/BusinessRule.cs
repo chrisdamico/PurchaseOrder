@@ -9,23 +9,44 @@ namespace PurchaseOrder
     {
         private object _value1;
         private object _value2;
-        private Comparator _valueComparison;
+        private Comparator _valueComparator;
         private string _methodName;
-        private Boolean _oneTimeRule = false;
+        private bool _oneTimeRule = false;
+        private bool _hasParameter;
 
-        public BusinessRule(object value1, object value2, Comparator valueComparison,
-            string methodName)
+        public BusinessRule(object value1, object value2, string valueComparator,
+            string methodName, bool oneTimeRule, bool hasParameter)
         {
             _value1 = value1;
             _value2 = value2;
-            _valueComparison = valueComparison;
+            switch(valueComparator.ToUpper())
+            {
+                case "EQUALTO":
+                    _valueComparator = Comparator.Equals;
+                    break;
+                case "NOTEQUALTO":
+                    _valueComparator = Comparator.NotEquals;
+                    break;
+                case "GREATERTHAN":
+                    _valueComparator = Comparator.GreaterThan;
+                    break;
+                case "LESSTHAN":
+                    _valueComparator = Comparator.LessThan;
+                    break;
+                default:
+                    break;
+                
+            }
             _methodName = methodName;
+            _oneTimeRule = oneTimeRule;
+            _hasParameter = hasParameter;
         }
 
         public object Value1 { get => _value1; }
         public object Value2 { get => _value2; }
-        public object ValueComparison { get => _valueComparison; }
-        public object MethodName { get => _methodName; }
-        public bool RuleApplied { get => _oneTimeRule; }
+        public Comparator ValueComparison { get => _valueComparator; }
+        public string MethodName { get => _methodName; }
+        public bool OneTimeRule { get => _oneTimeRule; }
+        public bool HasParameter { get => _hasParameter; }
     }
 }

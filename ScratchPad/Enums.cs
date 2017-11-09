@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PurchaseOrder
+namespace ScratchPad
 {
     public enum Comparator
     {
-        Equals,
-        GreaterThan,
-        LessThan,
-        NotEquals
-        
+        Equality
     }
 
     public enum MembershipType

@@ -18,12 +18,12 @@ namespace PurchaseOrder
         private List<Item> _itemsList;
         private string _poNumber;
         private double _total;
+        private bool _packingSlipPrinted;
 
         public Customer Customer { get => _customer; }
         public List<Item> ItemsList { get => _itemsList; }
         public string PoNumber { get => _poNumber; }
         public double Total { get => _total; }
-
-
+        public bool PackingSlipPrinted { get => _packingSlipPrinted; set => _packingSlipPrinted = value; }
     }
 }
